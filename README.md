@@ -1,8 +1,14 @@
 # Next.js File Uploader Component
 
+**Live demo:** https://nextjs-file-uploader-example.vercel.app/
+
 The intent of this repo is to provide a simple to use and simple to copy and paste file uploader component for Next.js.
 
-**Live demo:** 
+The file uploader component uses [Uppy](https://uppy.io/) under the hood and is accompanied by an API route that handles URL signing.
+
+It was written mainly to be used with R2 but any blob storage with a S3-compatible API should work with just a few tweaks.
+
+Good for simple projects or for bootstrapping more complex file-uploading workflows when customized.
 
 ## Features
 
@@ -10,6 +16,7 @@ The intent of this repo is to provide a simple to use and simple to copy and pas
 - File content hashing
 - Drag and drop
 - URL pre-signing
+- Customizable
 
 ## Setup
 
@@ -23,9 +30,13 @@ npm i @uppy/core @uppy/react @uppy/aws-s3 @uppy/dashboard @uppy/drag-drop @uppy/
 
 ### Copy the `<FileUploader />` component and the `sign-s3` route into your project
 
-Copy https://github.com/datopian/nextjs-file-uploader/blob/main/components/FileUploader.tsx to the components folder of your project.
+Copy the following file to the components folder of your project:
 
-Next, copy https://github.com/datopian/nextjs-file-uploader/blob/main/pages/api/sign-s3.ts into your project's `pages/api/` folder.
+https://github.com/datopian/nextjs-file-uploader/blob/main/components/FileUploader.tsx
+
+Next, copy the following file into your project's `pages/api/` folder:
+
+https://github.com/datopian/nextjs-file-uploader/blob/main/pages/api/sign-s3.ts
 
 ### Set the environment variables
 
