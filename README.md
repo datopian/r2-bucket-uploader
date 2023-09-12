@@ -28,6 +28,8 @@ On your project, run:
 npm i @uppy/core @uppy/react @uppy/aws-s3 @uppy/dashboard @uppy/drag-drop @uppy/progress-bar @uppy/file-input crypto-hash @aws-sdk/client-s3 @aws-sdk/s3-request-presigner
 ```
 
+This command will install all the dependencies that are required by this component.
+
 ### Copy the `<FileUploader />` component and the `sign-s3` route into your project
 
 Copy the following file to the components folder of your project:
@@ -48,6 +50,8 @@ R2_ACCESS_KEY_ID=
 R2_SECRET_KEY_ID=
 R2_BUCKET_NAME=
 ```
+
+The values should be available from the R2 management dashboard on Cloudflare.
 
 ### Use the component
 
