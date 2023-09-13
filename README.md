@@ -1,6 +1,6 @@
-# Next.js File Uploader Component
+# R2 bucket File Uploader
 
-**Live demo:** https://nextjs-file-uploader-example.vercel.app/
+<img width="1080" alt="Screen Shot 2023-09-13 at 12 23 29 PM" src="https://github.com/datopian/nextjs-file-uploader/assets/17809581/f2776401-3b72-4844-af8d-36481857434b">
 
 The intent of this repo is to provide a simple to use and simple to copy and paste file uploader component for Next.js.
 
