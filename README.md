@@ -36,11 +36,11 @@ This command will install all the dependencies that are required by this compone
 
 Copy the following file to the components folder of your project:
 
-https://github.com/datopian/nextjs-file-uploader/blob/main/components/FileUploader.tsx
+https://github.com/datopian/r2-bucket-uploader/blob/main/components/FileUploader.tsx
 
 Next, copy the following file into your project's `pages/api/` folder:
 
-https://github.com/datopian/nextjs-file-uploader/blob/main/pages/api/sign-s3.ts
+https://github.com/datopian/r2-bucket-uploader/blob/main/pages/api/sign-s3.ts
 
 ### Set the environment variables
 
