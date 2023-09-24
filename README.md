@@ -2,7 +2,7 @@
 
 A minimal and flexible uploader component tailored for Cloudflare R2 bucket. Fully compatible with [PortalJS](https://portaljs.org/).
 
-<img width="1080" alt="Screen Shot 2023-09-13 at 12 23 29 PM" src="https://github.com/datopian/nextjs-file-uploader/assets/17809581/f2776401-3b72-4844-af8d-36481857434b">
+<img width="1080" alt="r2-bucket-uploader" src="https://github.com/datopian/r2-bucket-uploader/assets/17809581/28028669-eec4-4c4b-b05f-56cd20d410d8">
 
 The intent of this repo is to provide a simple to use and simple to copy and paste file uploader component for Next.js.
 
