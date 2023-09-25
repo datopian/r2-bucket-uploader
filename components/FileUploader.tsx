@@ -10,7 +10,7 @@ import "@uppy/dashboard/dist/style.min.css";
 
 export async function getUploadParameters(file: UppyFile) {
   const arrayBuffer = await new Response(file.data).arrayBuffer();
-  const response = await fetch("/api/sign-s3", {
+  const response = await fetch("/api/upload", {
     method: "POST",
     headers: {
       accept: "application/json",

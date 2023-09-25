@@ -1,32 +1,37 @@
 import Head from "next/head";
 import { FileUploader } from "../components/FileUploader";
+import { MultipartFileUploader } from "../components/MultipartFileUploader";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Datopian - Next.js File Uploader</title>
+        <title>R2 bucket File Uploader</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-          Welcome to{" "}
-          <a href="https://github.com/datopian/nextjs-file-uploader">
-            the file uploader example!
-          </a>
-        </h1>
+        <h1 className={styles.title}>Upload files to R2 bucket</h1>
 
         <p className={styles.description}>
-          Check out <code>components/FileUploader.tsx</code> and{" "}
-          <code>pages/api/sign-s3.ts</code> to learn how it works.
-          <br /> Feel free to copy these files into your own project.
+          You can drag and drop file(s) or directories below to upload them into
+          a blob storage bucket.
         </p>
 
         <div>
+          <h3>Simple upload</h3>
           <FileUploader
-            onUploadSuccess={(result) => alert(JSON.stringify(result))}
+            onUploadSuccess={(result) => console.log(JSON.stringify(result))}
+          />
+        </div>
+
+        <hr />
+
+        <div>
+          <h3>Multipart upload</h3>
+          <MultipartFileUploader
+            onUploadSuccess={(result) => console.log(JSON.stringify(result))}
           />
         </div>
       </main>
@@ -55,6 +60,11 @@ export default function Home() {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        }
+        hr {
+          margin: 50px 0 30px 0;
+          width: 100%;
+          opacity: 0.3;
         }
       `}</style>
 
