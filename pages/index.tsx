@@ -89,7 +89,7 @@ export default function Home() {
         content: "Copy link";
         display: inline;
         margin-right: 4px;
-        font-size: 12px; /* Adjust the font size to your preference, e.g., 12px */
+        font-size: 12px;
         text-transform: none;
         }
       `}</style>
