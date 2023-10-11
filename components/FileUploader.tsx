@@ -60,5 +60,5 @@ export function FileUploader({
   uppy.on("complete", (result) => {
     onUploadSuccess(result);
   });
-  return <Dashboard uppy={uppy} />;
+  return <Dashboard uppy={uppy} showLinkToFileUploadResult={true} />;
 }

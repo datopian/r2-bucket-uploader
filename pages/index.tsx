@@ -3,6 +3,7 @@ import { FileUploader } from "../components/FileUploader";
 import { MultipartFileUploader } from "../components/MultipartFileUploader";
 import styles from "../styles/Home.module.css";
 
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -19,7 +20,7 @@ export default function Home() {
           a blob storage bucket.
         </p>
 
-        <div>
+        <div className={styles.button}>
           <h3>Simple upload</h3>
           <FileUploader
             onUploadSuccess={(result) => console.log(JSON.stringify(result))}
@@ -79,6 +80,17 @@ export default function Home() {
         }
         * {
           box-sizing: border-box;
+        }
+        button.uppy-u-reset.uppy-Dashboard-Item-action.uppy-Dashboard-Item-action--copyLink {
+          color: #2275d7 !important;
+          width: 86px;
+        }
+       button.uppy-u-reset.uppy-Dashboard-Item-action.uppy-Dashboard-Item-action--copyLink::before {
+        content: "Copy link";
+        display: inline;
+        margin-right: 4px;
+        font-size: 12px; /* Adjust the font size to your preference, e.g., 12px */
+        text-transform: none;
         }
       `}</style>
     </div>
