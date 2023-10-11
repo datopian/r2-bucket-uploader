@@ -20,7 +20,7 @@ export default function Home() {
           a blob storage bucket.
         </p>
 
-        <div className={styles.button}>
+        <div>
           <h3>Simple upload</h3>
           <FileUploader
             onUploadSuccess={(result) => console.log(JSON.stringify(result))}
