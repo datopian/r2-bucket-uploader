@@ -54,5 +54,14 @@ export function MultipartFileUploader({
   uppy.on("complete", (result) => {
     onUploadSuccess(result);
   });
-  return <Dashboard uppy={uppy} />;
+  uppy.on("upload-success", (file, response) => {
+    uppy.setFileState(file.id, {
+      progress: uppy.getState().files[file.id].progress,
+      uploadURL: response.body.Location,
+      response: response,
+      isPaused: false,
+    })
+  });
+
+  return <Dashboard uppy={uppy} showLinkToFileUploadResult={true} />;
 }
