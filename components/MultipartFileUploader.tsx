@@ -40,15 +40,15 @@ export function MultipartFileUploader({
           contentType,
         });
       },
-      prepareUploadParts: (file, partData) =>
-        fetchUploadApiEndpoint("prepare-upload-parts", { file, partData }),
-      completeMultipartUpload: (file, props) =>
-        fetchUploadApiEndpoint("complete-multipart-upload", { file, ...props }),
       listParts: (file, props) =>
         fetchUploadApiEndpoint("list-parts", { file, ...props }),
+      signPart: (file, props) =>
+        fetchUploadApiEndpoint("sign-part", { file, ...props }),
       abortMultipartUpload: (file, props) =>
         fetchUploadApiEndpoint("abort-multipart-upload", { file, ...props }),
-    });
+      completeMultipartUpload: (file, props) =>
+        fetchUploadApiEndpoint("complete-multipart-upload", { file, ...props }),
+    })
     return uppy;
   }, []);
   uppy.on("complete", (result) => {
@@ -56,7 +56,8 @@ export function MultipartFileUploader({
   });
   uppy.on("upload-success", (file, response) => {
     uppy.setFileState(file.id, {
-      progress: uppy.getState().files[file.id].progress,
+      progress: uppy.
+        getState().files[file.id].progress,
       uploadURL: response.body.Location,
       response: response,
       isPaused: false,

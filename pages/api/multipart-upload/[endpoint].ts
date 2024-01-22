@@ -8,7 +8,6 @@ import {
   AbortMultipartUploadCommand,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { sha256 } from "crypto-hash";
 
 const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_KEY_ID, R2_BUCKET_NAME } =
   process.env;
@@ -39,8 +38,9 @@ export default async function handler(
       return listParts(req, res);
     case "abort-multipart-upload":
       return abortMultipartUpload(req, res);
+    case "sign-part":
+      return signPart(req, res);
   }
-
   return res.status(404).end();
 }
 
@@ -50,17 +50,18 @@ export async function createMultipartUpload(
 ) {
   const { file, fileHash, contentType } = req.body;
   const filename = file.name;
-
   try {
     const params = {
       Bucket: R2_BUCKET_NAME,
       Key: `resources/${fileHash}/${filename}`,
       ContentType: contentType,
+      Metadata: {
+        "x-amz-meta-file-hash": fileHash,
+      },
     };
 
     const command = new CreateMultipartUploadCommand({ ...params });
     const response = await R2.send(command);
-
     return res.status(200).json({
       uploadId: response.UploadId,
       key: response.Key,
@@ -116,7 +117,7 @@ export async function listParts(req: NextApiRequest, res: NextApiResponse) {
     const command = new ListPartsCommand({ ...params });
     const response = await R2.send(command);
 
-    return res.status(200).json(response);
+    return res.status(200).json(response["Parts"]);
   } catch (err) {
     console.log("Error", err);
     return res.status(500).json(err);
@@ -138,7 +139,6 @@ export async function completeMultipartUpload(
     };
     const command = new CompleteMultipartUploadCommand({ ...params });
     const response = await R2.send(command);
-
     return res.status(200).json(response);
   } catch (err) {
     console.log("Error", err);
@@ -166,4 +166,24 @@ export async function abortMultipartUpload(
     console.log("Error", err);
     return res.status(500).json(err);
   }
+}
+
+export async function signPart(
+  req: NextApiRequest,
+  res: NextApiResponse) {
+  const { key, uploadId } = req.body;
+  const partNumber = parseInt(req.body.partNumber);
+
+  const params = {
+    Bucket: R2_BUCKET_NAME,
+    Key: key,
+    PartNumber: partNumber,
+    UploadId: uploadId,
+  };
+
+  const command = new UploadPartCommand({ ...params });
+  const url = await getSignedUrl(R2, command, { expiresIn: 3600 });
+  return res.status(200).json({
+    url: url,
+  });
 }
