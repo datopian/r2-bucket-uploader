@@ -5,14 +5,14 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_KEY_ID, R2_BUCKET_NAME } =
   process.env;
 
-const R2 = new S3Client({
+const R2 = new S3Client([{
   region: "auto",
   endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
     accessKeyId: R2_ACCESS_KEY_ID,
     secretAccessKey: R2_SECRET_KEY_ID,
   },
-});
+}]);
 
 export default async function handler(
   req: NextApiRequest,
