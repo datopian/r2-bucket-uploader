@@ -19,12 +19,12 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { filename, fileHash, contentType } = JSON.parse(req.body as string);
+  const { filename, contentType } = JSON.parse(req.body as string);
   const signedUrl = await getSignedUrl(
     R2,
     new PutObjectCommand({
       Bucket: R2_BUCKET_NAME,
-      Key: `resources/${fileHash}/${filename}`,
+      Key: `resources/${filename}`,
       ContentType: contentType as string,
     }),
     { expiresIn: 3600 }
