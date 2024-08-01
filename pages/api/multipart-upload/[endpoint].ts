@@ -48,16 +48,13 @@ export async function createMultipartUpload(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { file, fileHash, contentType } = req.body;
+  const { file, contentType } = req.body;
   const filename = file.name;
   try {
     const params = {
       Bucket: R2_BUCKET_NAME,
-      Key: `resources/${fileHash}/${filename}`,
+      Key: `resources/${filename}`,
       ContentType: contentType,
-      Metadata: {
-        "x-amz-meta-file-hash": fileHash,
-      },
     };
 
     const command = new CreateMultipartUploadCommand({ ...params });
@@ -168,9 +165,7 @@ export async function abortMultipartUpload(
   }
 }
 
-export async function signPart(
-  req: NextApiRequest,
-  res: NextApiResponse) {
+export async function signPart(req: NextApiRequest, res: NextApiResponse) {
   const { key, uploadId } = req.body;
   const partNumber = parseInt(req.body.partNumber);
 

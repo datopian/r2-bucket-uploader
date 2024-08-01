@@ -31,12 +31,9 @@ export function MultipartFileUploader({
       autoProceed: true,
     }).use(AwsS3Multipart, {
       createMultipartUpload: async (file) => {
-        const arrayBuffer = await new Response(file.data).arrayBuffer();
-        const fileHash = await sha256(arrayBuffer);
         const contentType = file.type;
         return fetchUploadApiEndpoint("create-multipart-upload", {
           file,
-          fileHash,
           contentType,
         });
       },
@@ -48,7 +45,7 @@ export function MultipartFileUploader({
         fetchUploadApiEndpoint("abort-multipart-upload", { file, ...props }),
       completeMultipartUpload: (file, props) =>
         fetchUploadApiEndpoint("complete-multipart-upload", { file, ...props }),
-    })
+    });
     return uppy;
   }, []);
   uppy.on("complete", (result) => {
@@ -56,12 +53,11 @@ export function MultipartFileUploader({
   });
   uppy.on("upload-success", (file, response) => {
     uppy.setFileState(file.id, {
-      progress: uppy.
-        getState().files[file.id].progress,
+      progress: uppy.getState().files[file.id].progress,
       uploadURL: response.body.Location,
       response: response,
       isPaused: false,
-    })
+    });
   });
 
   return <Dashboard uppy={uppy} showLinkToFileUploadResult={true} />;
