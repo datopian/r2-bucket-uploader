@@ -9,7 +9,6 @@ import "@uppy/core/dist/style.min.css";
 import "@uppy/dashboard/dist/style.min.css";
 
 export async function getUploadParameters(file: UppyFile) {
-  const arrayBuffer = await new Response(file.data).arrayBuffer();
   const response = await fetch("/api/upload", {
     method: "POST",
     headers: {
@@ -17,7 +16,6 @@ export async function getUploadParameters(file: UppyFile) {
     },
     body: JSON.stringify({
       filename: file.name,
-      fileHash: await sha256(arrayBuffer),
       contentType: file.type,
     }),
   });

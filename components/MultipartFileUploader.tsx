@@ -1,7 +1,6 @@
 import React from "react";
 import Uppy, { type UploadResult } from "@uppy/core";
 import { Dashboard } from "@uppy/react";
-import { sha256 } from "crypto-hash";
 import AwsS3Multipart from "@uppy/aws-s3-multipart";
 
 // Uppy styles
