@@ -1,6 +1,14 @@
 # Cloudflare R2 bucket File Uploader
 
-A minimal and flexible uploader component tailored for Cloudflare R2 bucket. Fully compatible with [PortalJS](https://portaljs.org/).
+A minimal and flexible uploader component tailored for Cloudflare R2 bucket. It supports multipart upload and was tested with files up to ~10 GB size. Fully compatible with [PortalJS](https://portaljs.org/).
+
+- R2 blob storage support (or any S3 API compatible storage)
+- Tested with ~10 GB files
+- ~~File content hashing~~ Removed to improve performance.
+- Drag and drop
+- URL pre-signing
+- Multipart upload support
+- Customizable
 
 <img width="1080" alt="r2-bucket-uploader" src="https://github.com/datopian/r2-bucket-uploader/assets/17809581/28028669-eec4-4c4b-b05f-56cd20d410d8">
 
@@ -11,15 +19,6 @@ The file uploader components use [Uppy](https://uppy.io/) under the hood and are
 The components were written mainly to be used with R2 but any blob storage with a S3-compatible API should work with just a few tweaks.
 
 Good for simple projects or for bootstrapping more complex file-uploading workflows when customized.
-
-## Features
-
-- R2 blob storage support
-- File content hashing
-- Drag and drop
-- URL pre-signing
-- Multipart upload support
-- Customizable
 
 ## Setup
 
