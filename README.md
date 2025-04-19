@@ -1,6 +1,6 @@
 # Cloudflare R2 bucket File Uploader
 
-A minimal and flexible uploader component tailored for Cloudflare R2 bucket. It supports multipart upload and was tested with files up to ~10 GB size. Fully compatible with [PortalJS](https://portaljs.org/).
+A minimal and flexible uploader component tailored for Cloudflare R2 bucket. It supports multipart upload and was tested with files up to ~10 GB size. Fully compatible with [PortalJS](https://portaljs.com/).
 
 - R2 blob storage support (or any S3 API compatible storage)
 - Tested with ~10 GB files
